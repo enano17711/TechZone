@@ -9,11 +9,11 @@ module.exports = (sequelize) => {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       email: {
         type: DataTypes.STRING,
@@ -22,11 +22,29 @@ module.exports = (sequelize) => {
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true,
       },
 
       profileIMG: {
         type: DataTypes.STRING,
+        allowNull: true,
+      },
+      direction: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      cellPhone: {
+        type: DataTypes.BIGINT,
+        allowNull: true,
+      },
+      Gender: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      available: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        defaultValue: true,
       },
     },
     { timestamps: false }

@@ -1,14 +1,14 @@
-import { NextApiRequest,NextApiResponse } from "next";
-import Stripe from "stripe";
+// import { NextApiRequest,NextApiResponse } from "next";
+// import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.SECRET_KEY as string,{
-    apiVersion:"2022-11-15"
-})
+// const stripe = new Stripe(process.env.SECRET_KEY as string,{
+//     apiVersion:"2022-11-15"
+// })
 
-export default async function handler (req:NextApiRequest,res:NextApiResponse){
-if(req.method==='POST'){
+// export default async function handler (req:NextApiRequest,res:NextApiResponse){
+// if(req.method==='POST'){
 
-}else{
-    res.redirect('303',"https://localhost3000")
-}
-}
+// }else{
+//     res.redirect('303',"https://localhost3000")
+// }
+// }
