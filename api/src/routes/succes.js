@@ -8,8 +8,8 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true, // true for 465, false for other ports
   auth: {
-    user: 'urculluvalentin@gmail.com', // generated ethereal user
-    pass: 'cmpesvwqtyltqcck', // generated ethereal password
+    user: 'techzone.imgbb@gmail.com', // generated ethereal user
+    pass: 'kprhwmycdjnwqvrp', // generated ethereal password
   },
 })
 transporter.verify().then(() => {
@@ -25,7 +25,7 @@ console.log("entra aca")
  
  
   await transporter.sendMail({
-    from: `"Compra Exitosa" <urculluvalentin@gmail.com>`, // sender address
+    from: `"Compra Exitosa" <techzone.imgbb@gmail.com>`, // sender address
     to: `${user[0].email}`, // list of receivers
     subject: "Compra Exitosa ✔", // Subject line
     text: "Hello world?", // plain text body
