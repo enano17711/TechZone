@@ -2,13 +2,15 @@ import { deleteProduct } from "@/store/actionCreators/deleteProduct";
 import { getDetails } from "@/store/actionCreators/getDetails";
 import { getProducts } from "@/store/actionCreators/getProducts";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, ReactElement } from "react";
 import { useDispatch } from "react-redux";
 import { useTypedSelector } from "@/store/useTypeSelector";
 import axios from "axios";
 import React from "react";
+import { NextPageWithLayout } from "../_app";
+import MainLayout from "@/layout/main-layout";
 
-const ReviewAndScore = () => {
+const ReviewAndScore: NextPageWithLayout = () => {
     const result = useTypedSelector((state) => state.product.detail)
     const user = useTypedSelector((state) => state.user)
 
@@ -19,6 +21,17 @@ const ReviewAndScore = () => {
         score: 0,
         userId: 0,
         productsId: 0,
+        User: {
+            Gender: "",
+            available: false,
+            cellPhone: "",
+            direction: "",
+            email: "",
+            id: 0,
+            name: "",
+            password: null,
+            profileIMG: ""
+        }
     })
     const { id } = router.query;
     const [inputReview, SetInputReview] = useState<string>("")
@@ -28,9 +41,9 @@ const ReviewAndScore = () => {
     const dispatch = useDispatch();
 
     const findReview = async (id: string | string[]) => {
-        const result = await axios.get(`http://localhost:3001/review?user=${user.UserFromDb.id}&product=40`)
+        const result = await axios.get(`http://localhost:3001/review?user=${user.UserFromDb.id}&product=${id}`)
             .then((data) => {
-                if (data.data!= undefined) {
+                if (data.data != undefined) {
                     setReviewFromDb(data.data);
                     SetInputReview(data.data.review)
                     SetFullStar(data.data.score)
@@ -83,7 +96,8 @@ const ReviewAndScore = () => {
                     UserId: user.UserFromDb.id,
                     ProductId: id,
                 }
-                )
+                ).then((data) => { setReviewFromDb({ ...reviewFromDb, id: data.data.id }) })
+
                 alert("Tu opinion ha sido guardada exitosamente")
             } catch (error) {
                 alert("Tuvimos un problema al guardar tu opinion, por favor intenta más tarde")
@@ -105,7 +119,7 @@ const ReviewAndScore = () => {
     }
 
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center pb-10">
             <div className="flex flex-row bg-violet-300 rounded-xl px-5 m-5">
                 <div className="py-10">
                     <img src={result[0]?.images[1]} className="h-[200px] w-[200px] rounded-xl"></img>
@@ -147,10 +161,14 @@ const ReviewAndScore = () => {
                 </textarea>
             </div>
             <div>
-                <button onClick={handleButtonRate}>Calificar</button>
+                <button onClick={handleButtonRate}
+                className="bg-violet-900 rounded-xl py-1 px-2 text-white hover:bg-violet-700 duration-300 mt-2 ">Calificar</button>
             </div>
         </div>
     )
 };
+ReviewAndScore.getLayout = function getLayout(page: ReactElement) {
+    return <MainLayout>{page}</MainLayout>;
+  };
 
 export default ReviewAndScore;
