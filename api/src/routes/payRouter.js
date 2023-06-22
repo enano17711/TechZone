@@ -124,8 +124,8 @@ payRouter.post('/create-checkout-session', async (req, res) => {
       const session = await stripe.checkout.sessions.create({
         line_items: response,
         mode: 'payment',
-        success_url: 'http://localhost:3000/success?id={CHECKOUT_SESSION_ID}',
-        cancel_url: 'http://localhost:3000/shopping',
+        success_url: 'http://techzone-market-macanita.vercel.app/success?id={CHECKOUT_SESSION_ID}',
+        cancel_url: 'http://techzone-market-macanita.vercel.app/shopping',
       });
       res.status(200).json({
         sessionURL: session.url,
