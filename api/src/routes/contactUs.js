@@ -32,7 +32,7 @@ contactRouter.post('/', async (req, res) => {
   const {input} = req.body;
   const mailOptions = {
     from:`${input.subject} <${input.email}>`, 
-    to: `urculluvalentin@gmail.com`, 
+    to: `techzone.imgbb@gmail.com`, 
     subject: `Mensaje de ${input.email}: ${input.subject}`, 
     text: input.message,
   }
