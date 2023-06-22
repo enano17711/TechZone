@@ -18,8 +18,8 @@ const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
  service:'gmail',
   auth: {
-    user: 'urculluvalentin@gmail.com', // generated ethereal user
-    pass: 'cmpesvwqtyltqcck', // generated ethereal password
+    user: 'techzone.imgbb@gmail.com', // generated ethereal user
+    pass: 'kprhwmycdjnwqvrp', // generated ethereal password
   },
 })
 transporter.verify().then(() => {
